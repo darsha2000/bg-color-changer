@@ -1,0 +1,102 @@
+<!-- 
+// # BG-Color-Changer
+
+// Your task is to design and implement a Bg-Color-Changer application that meets the following requirements:
+
+// - The UI should resemble the example shown below..
+
+// ![Image](https://utfs.io/f/7e57da15-803c-48c7-8487-dcade58eef91-wx71zg.png)
+
+
+// - When user clicks on a red button, the background color should change to red.
+
+
+// - User should also be able to add custom colors to the color panel.
+
+
+// ### Don't copy UI as it is, only take reference from it. -->
+
+<html>
+<body>
+    <style>
+        #panel{
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 550px;
+            padding-bottom: 50px;
+        }
+        #colors{
+            display: flex;
+            gap: 80px;
+            background-color: white;
+            padding: 20px 90px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        button{
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        input{
+            border: none;
+            padding: 5px 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style> 
+
+ <div id="panel">
+    
+    <div id="colors" style="display: flex; justify-content: space-between;">
+
+         <div><button style="background-color: red;">Red</button></div>  
+         <div><button style="background-color: yellow;">Yellow</button></div>
+         <div><button style="background-color: black; color: white;">Black</button></div>
+         <div><button style="background-color: green;">Green</button></div>
+         <div><button style="background-color: blue;">Blue</button></div>
+         
+    </div>  
+ </div> 
+    <div>
+        <input type="text" placeholder="enter color">
+        <button id="addcolor">Add </button>
+    </div>
+    
+</body>
+<script>
+
+    function colorvalue(event){
+        if(event.target.tagName === "BUTTON"){
+            let color = event.target.style.backgroundColor
+            document.body.style.backgroundColor = color;
+        }
+    }
+    
+    const button = document.querySelector("#colors")
+    button.addEventListener("click" , colorvalue)
+    const addbutt = document.querySelector("#addcolor")
+    
+    addbutt.addEventListener("click" , () => {
+        let values = document.querySelector("input").value
+        if( values.trim() === ""){
+            alert("enter color");
+            return;
+        }
+        const newdiv = document.createElement("div")
+        const  newbutton = document.createElement("button")
+        
+        
+        button.append(newdiv)
+        newdiv.append(newbutton)
+       
+        newbutton.innerHTML = values 
+
+        newbutton.style.backgroundColor = values
+        document.querySelector("input").value = "";
+    })
+    
+    
+</script>
+</html>
